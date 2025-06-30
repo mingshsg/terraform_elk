@@ -53,13 +53,13 @@ variable "domainname" {
 variable "elastic_pwd" {
   description = "elasticsearch password"
   type        = string
-  default     = "Changed!"
+  default     = "elastic_password"
 }
 
 variable "kibana_pwd" {
   description = "kibana password"
   type        = string
-  default     = "Changed!"
+  default     = "kibana_password"
 }
 
 # === below is for testing tags === #
