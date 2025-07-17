@@ -14,7 +14,8 @@ variable "instance_type" {
 
 variable "ami_id" {
   type = string
-  default = "ami-0435fcf800fb5418d"
+  # default = "ami-0435fcf800fb5418d"
+  default = "ami-04698733964af06d5"
   # AWS Linux 2023 kernel-6.1 on 2025-06-27
 }
 
