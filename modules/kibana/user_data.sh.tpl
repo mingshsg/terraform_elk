@@ -2,8 +2,8 @@
 echo "${hostname}" > /etc/hostname
 hostnamectl set-hostname ${hostname}
 
-# wget ${install_package} -O kibana.rpm
 curl -o kibana.rpm ${install_package}
+# wget ${install_package} -O kibana.rpm
 
 dnf install ./kibana.rpm -y
 
