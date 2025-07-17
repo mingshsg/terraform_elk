@@ -3,7 +3,7 @@ locals{
   {
     roles           = ["data_hot", "ingest", "transform", "data_content","remote_cluster_client", "master"]
     instance_type   = "t3a.medium"
-    os_ebs_size_gb  = 8
+    os_ebs_size_gb  = 10
     data_ebs_size_gb = 10
     hosts       = [
       {
