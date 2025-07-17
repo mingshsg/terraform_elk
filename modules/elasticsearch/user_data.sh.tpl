@@ -50,10 +50,10 @@ xpack:
 EOF
 
 %{ if mount_data_disk ~}
-mkfs -t xfs /dev/xvdf
+mkfs -t xfs /dev/nvme1n1
 mkdir -p /usr/share/elasticsearch/data
-mount /dev/xvdf /usr/share/elasticsearch/data
-echo "/dev/xvdf /usr/share/elasticsearch/data xfs defaults,nofail 0 2" >> /etc/fstab
+mount /dev/nvme1n1 /usr/share/elasticsearch/data
+echo "/dev/nvme1n1 /usr/share/elasticsearch/data xfs defaults,nofail 0 2" >> /etc/fstab
 %{ endif ~}
 
 setfacl -Rm d:u:elasticsearch:rwX,u:elasticsearch:rwX /etc/elasticsearch/
