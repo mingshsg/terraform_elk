@@ -59,6 +59,9 @@ echo "/dev/nvme1n1 /usr/share/elasticsearch/data xfs defaults,nofail 0 2" >> /et
 setfacl -Rm d:u:elasticsearch:rwX,u:elasticsearch:rwX /etc/elasticsearch/
 setfacl -Rm d:u:elasticsearch:rwX,u:elasticsearch:rwX /usr/share/elasticsearch/
 
+sed -i '/^\[Service\]$/a LimitMEMLOCK=infinity\n' /usr/lib/systemd/system/elasticsearch.service
+systemctl daemon-reload
+
 systemctl start elasticsearch
 
 sleep 10
