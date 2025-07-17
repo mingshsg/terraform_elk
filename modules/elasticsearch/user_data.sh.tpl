@@ -2,7 +2,9 @@
 echo "${hostname}" > /etc/hostname
 hostnamectl set-hostname ${hostname}
 
-wget ${install_package} -O elasticsearch.rpm
+curl -o elasticsearch.rpm ${install_package}
+# wget ${install_package} -O elasticsearch.rpm
+
 dnf install ./elasticsearch.rpm -y
 
 systemctl enable elasticsearch
