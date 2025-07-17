@@ -34,7 +34,7 @@ resource "aws_instance" "this" {
   dynamic "ebs_block_device" {
     for_each = var.data_ebs_size_gb > 0 ? [1] : []
     content {
-      device_name = "/dev/xvdf"
+      device_name = "/dev/nvme1n1"
       volume_size = var.data_ebs_size_gb
       volume_type = "gp3"
       tags = var.tags
