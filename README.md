@@ -45,7 +45,12 @@ Place the following certificate files in the `files/` directory:
 ### 1. Clone the Repository
 
 ```bash
+# Using HTTPS
 git clone https://github.com/mingshsg/terraform_elk.git
+cd terraform_elk
+
+# Or using SSH (recommended for better security)
+git clone git@github.com:mingshsg/terraform_elk.git
 cd terraform_elk
 ```
 
@@ -60,27 +65,32 @@ Edit the `variables.tf` and `network.tf` files to match your AWS environment:
 - `security_group_ids` - Your security group IDs
 - `subnet_map` - Map of availability zones to subnet IDs
 - `ec2_provision_key` - Your EC2 key pair name
-- `elastic_pwd` - Elasticsearch superuser password
-- `kibana_pwd` - Kibana system user password
+- `elastic_pwd` - Elasticsearch superuser password (**Use environment variables or Terraform sensitive variables**)
+- `kibana_pwd` - Kibana system user password (**Use environment variables or Terraform sensitive variables**)
+
+**Security Best Practice:** Instead of hardcoding passwords in `variables.tf`, use:
+- Environment variables: `export TF_VAR_elastic_pwd="your-secure-password"`
+- Terraform CLI: `terraform apply -var="elastic_pwd=your-secure-password"`
+- External secrets management: AWS Secrets Manager, HashiCorp Vault, etc.
 
 **Example network.tf configuration:**
 
 ```hcl
 variable "vpc_id" {
   type    = string
-  default = "vpc-xxxxxxxxxxxxx"
+  default = "vpc-12345678"  # Replace with your VPC ID (8 or 17 chars)
 }
 
 variable "security_group_ids" {
   type    = list(string)
-  default = ["sg-xxxxxxxxxxxxx"]
+  default = ["sg-12345678"]  # Replace with your security group ID(s)
 }
 
 locals {
   subnet_map = {
-    "ap-southeast-1a" = "subnet-xxxxxxxxxxxxx"
-    "ap-southeast-1b" = "subnet-yyyyyyyyyyy"
-    "ap-southeast-1c" = "subnet-zzzzzzzzzzz"
+    "ap-southeast-1a" = "subnet-12345678"  # Replace with your subnet IDs
+    "ap-southeast-1b" = "subnet-87654321"
+    "ap-southeast-1c" = "subnet-abcdef12"
   }
 }
 ```
